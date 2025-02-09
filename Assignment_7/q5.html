@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Character Counter</title>
+    <style>
+        .highlight { color: red; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Character & Word Counter</h1>
+    <textarea id="textInput" rows="5" cols="40" oninput="countText()"></textarea>
+    <p>Characters: <span id="charCount">0</span></p>
+    <p>Words: <span id="wordCount">0</span></p>
+    <p>Repeated Words: <span id="repeatedWords"></span></p>
+
+    <script>
+        function countText() {
+            let text = document.getElementById("textInput").value;
+            
+            
+            let charCount = text.length;
+
+            
+            let words = text.trim().split(/\s+/);
+            let wordCount = text.trim() === "" ? 0 : words.length;
+
+            let wordMap = {};
+            let repeatedWords = new Set();
+
+            words.forEach(word => {
+                let lowerWord = word.toLowerCase().replace(/[^a-z0-9]/g, ''); 
+                if (lowerWord) {
+                    if (wordMap[lowerWord]) {
+                        wordMap[lowerWord]++;
+                        repeatedWords.add(lowerWord);
+                    } else {
+                        wordMap[lowerWord] = 1;
+                    }
+                }
+            });
+
+            
+            let highlightedText = words.map(word => {
+                let lowerWord = word.toLowerCase().replace(/[^a-z0-9]/g, '');
+                return repeatedWords.has(lowerWord) ? `<span class="highlight">${word}</span>` : word;
+            }).join(' ');
+
+           
+            document.getElementById("charCount").textContent = charCount;
+            document.getElementById("wordCount").textContent = wordCount;
+            document.getElementById("repeatedWords").innerHTML = highlightedText;
+        }
+    </script>
+</body>
+</html>

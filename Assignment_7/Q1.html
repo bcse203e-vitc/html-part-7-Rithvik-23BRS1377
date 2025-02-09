@@ -1,1 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Random Number Guesser</title>
+</head>
+<body>
+    <button onclick="playGame()">Start Game</button>
 
+    <script>
+        function playGame() {
+            let num = Math.floor(Math.random() * 100) + 1;
+            let attempts = 5;
+            let guess;
+
+            while (attempts > 0) {
+                guess = parseInt(prompt(`Enter number: Attempts left = ${attempts}`)); 
+
+                if (guess === num) {
+                    window.alert("🎉 Correct! You guessed the number!");
+                    return;
+                }
+
+                window.alert(guess > num ? 'Too high!' : 'Too low!');
+                attempts--;
+            }
+
+            window.alert(` Out of attempts! The correct number was ${num}`); 
+        }
+    </script>
+</body>
+</html>

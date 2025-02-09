@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Dynamic Table Generator</title>
+</head>
+<body>
+    <h1>Dynamic Table Generator</h1>
+
+    <label>Enter Rows:</label>
+    <input type="number" id="rows" min="1">
+    <label>Enter Columns:</label>
+    <input type="number" id="cols" min="1">
+    <button onclick="generateTable()">Generate Table</button>
+
+    <br><br>
+    <div id="tableContainer"></div>
+
+    <script>
+        function generateTable() {
+            let rows = parseInt(document.getElementById("rows").value);
+            let cols = parseInt(document.getElementById("cols").value);
+
+            if (isNaN(rows) || isNaN(cols) || rows <= 0 || cols <= 0) {
+                document.getElementById("tableContainer").innerHTML = "<p> Please enter valid numbers for rows and columns!</p>";
+                return;
+            }
+
+            let table = "<table border='1' style='border-collapse: collapse; width: 50%; text-align: center;'>";
+            for (let i = 0; i < rows; i++) {
+                table += "<tr>";
+                for (let j = 0; j < cols; j++) {
+                    table += `<td>(${i + 1}, ${j + 1})</td>`;
+                }
+                table += "</tr>";
+            }
+            table += "</table>";
+
+            document.getElementById("tableContainer").innerHTML = table;
+        }
+    </script>
+</body>
+</html>

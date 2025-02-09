@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>FizzBuzz Challenge</title>
+</head>
+<body>
+    <button onclick="fizzBuzz()">Run FizzBuzz</button>
+    <button onclick="customFizzBuzz()">Custom FizzBuzz</button>
+    <p id="output"></p>
+
+    <script>
+        function fizzBuzz() {
+            let result = "";
+            for (let i = 1; i <= 50; i++) {
+                if (i % 3 === 0 && i % 5 === 0) {
+                    result += "FizzBuzz<br>";
+                } else if (i % 3 === 0) {
+                    result += "Fizz<br>";
+                } else if (i % 5 === 0) {
+                    result += "Buzz<br>";
+                } else {
+                    result += i + "<br>";
+                }
+            }
+            document.getElementById("output").innerHTML = result;
+        }
+
+        function customFizzBuzz() {
+            let div1 = parseInt(prompt("Enter first divisor:", "3"));
+            let div2 = parseInt(prompt("Enter second divisor:", "5"));
+            let word1 = prompt(`Enter word for ${div1}:`, "Fizz");
+            let word2 = prompt(`Enter word for ${div2}:`, "Buzz");
+
+            let result = "";
+            for (let i = 1; i <= 50; i++) {
+                if (i % div1 === 0 && i % div2 === 0) {
+                    result += word1 + word2 + "<br>";
+                } else if (i % div1 === 0) {
+                    result += word1 + "<br>";
+                } else if (i % div2 === 0) {
+                    result += word2 + "<br>";
+                } else {
+                    result += i + "<br>";
+                }
+            }
+            document.getElementById("output").innerHTML = result;
+        }
+    </script>
+</body>
+</html>

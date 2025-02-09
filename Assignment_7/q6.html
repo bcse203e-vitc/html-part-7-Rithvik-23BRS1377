@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Find Duplicates in an Array</title>
+</head>
+<body>
+    <h1>Find Duplicates & Remove Duplicates</h1>
+
+    <label>Enter numbers:</label>
+    <input type="text" id="arrayInput">
+    <button onclick="findDuplicates()">Find Duplicates</button>
+    <button onclick="removeDuplicates()">Remove Duplicates</button>
+
+    <p>Duplicates: <span id="duplicates"></span></p>
+    <p>Unique Array: <span id="uniqueArray"></span></p>
+
+    <script>
+        function getArray() {
+            let input = document.getElementById("arrayInput").value;
+            return input.split(',').map(num => num.trim()).filter(num => num !== "");
+        }
+
+        function findDuplicates() {
+            let arr = getArray();
+            let countMap = {};
+            let duplicates = new Set();
+
+            arr.forEach(num => {
+                if (countMap[num]) {
+                    countMap[num]++;
+                    duplicates.add(num);
+                } else {
+                    countMap[num] = 1;
+                }
+            });
+
+            document.getElementById("duplicates").textContent = duplicates.size ? [...duplicates].join(', ') : "None";
+        }
+
+        function removeDuplicates() {
+            let arr = getArray();
+            let uniqueArray = [...new Set(arr)];
+            document.getElementById("uniqueArray").textContent = uniqueArray.join(', ');
+        }
+    </script>
+</body>
+</html>
